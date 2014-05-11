@@ -1,0 +1,45 @@
+<html ng-app="szalekApp">
+<head>
+    <meta charset="utf-8">
+    <title>Angular.js Example</title>
+    <script src="angular.min.js"></script>
+    <script src="app.js"></script>
+</head>
+<body>
+    <section ng-controller="NameCtrl">
+        <h1>{{hello}}</h1>
+        <ul>
+            <li ng-repeat="name in names">
+                {{name}}
+                <a href="" ng-click="removeName(name)">delete</a>
+            </li>
+        </ul>
+
+        <form ng-submit="addName()">
+            <input type="text" ng-model="newName"/>
+            <input type="submit"/>
+        </form>
+    </section>
+
+    <section ng-controller="CountryStaticCtrl">
+        <ul>
+            <li ng-repeat="country in countries">
+                Name: {{country.name}} - population {{country.population}}
+            </li>
+        </ul>
+    </section>
+
+    <section ng-controller="CountryCtrl">
+        Search: <input ng-model="query" type="text"/>
+        <br/>
+        <a href="" ng-click="orderField ='name'; orderReverse = !orderReverse">by Name</a>
+        <a href="" ng-click="orderField ='population'; orderReverse = !orderReverse">by Population</a>
+        <br/>
+        <ul>
+            <li ng-repeat="country in countries | filter:query | orderBy:orderField:orderReverse">
+                Name: {{country.name}} - population {{country.population}}
+            </li>
+        </ul>
+    </section>
+</body>
+</html>
